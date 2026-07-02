@@ -14,7 +14,7 @@
     "qnap_client"
   ],
   "requirements": [
-    "qnap-client @ git+https://github.com/Chuck3CZ/python-qnap.git@v1.1.2"
+    "qnap-client @ git+https://github.com/Chuck3CZ/python-qnap.git@v1.1.3"
   ],
   "version": "3.2.3"
 }
