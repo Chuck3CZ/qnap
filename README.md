@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/disforw/qnap.svg)](https://github.com/disforw/qnap/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 👋 Welcome Back — v3.0
+## 👋 Welcome Back — v3.2.3
 
 After spending considerable time trying to get improvements accepted into Home Assistant core, active development is returning to this standalone HACS integration. The upstream PR process is slow by design — reviewers are volunteers with limited bandwidth, and even clean, well-tested code can sit for months before getting attention. Architectural discussions that should take a day can stretch into weeks. That's not a criticism of the HA team; it's just the reality of maintaining a massive open-source project at scale.
 
