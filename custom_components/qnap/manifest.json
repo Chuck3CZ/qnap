@@ -3,7 +3,7 @@
   "name": "QNAP",
   "codeowners": [
     "@disforw",
-    "@chuck3cz",
+    "@chuck3cz"
   ],
   "config_flow": true,
   "documentation": "https://github.com/Chuck3CZ/qnap",
