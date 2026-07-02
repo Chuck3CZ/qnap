@@ -5,8 +5,8 @@ from __future__ import annotations
 from datetime import timedelta
 import logging
 
-from qnap_client import ContainerStationClient, QnapClient, QnapError
-from qnap_client.models import NasData
+from qnap_client import ContainerStationClient, QnapAuthError, QnapClient, QnapError
+from qnap_client.models import Container, NasData
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
@@ -79,9 +79,42 @@ class QnapCoordinator(DataUpdateCoordinator[NasData]):
 
         # Container Station — non-fatal
         try:
-            data.containers = await self._cs.get_containers()
+            data.containers = await self._get_containers_with_reauth()
         except Exception as err:  # noqa: BLE001
             _LOGGER.warning("Container Station unavailable: %s", err)
             data.containers = getattr(self.data, "containers", []) if self.data else []
 
         return data
+
+    async def _get_containers_with_reauth(self) -> list[Container]:
+        """Fetch containers, retrying once after a fresh login on auth failure.
+
+        Works around a known QTS behaviour: ``self._api.get_all()`` fires
+        roughly a dozen CGI requests in parallel via ``asyncio.gather``. If
+        the QTS session gets invalidated mid-batch — e.g. because the same
+        account logs in concurrently through the web UI — the underlying
+        qnap-client library quietly resets its session state for the one
+        request that hit the 401, but ``get_all()`` as a whole still
+        "succeeds" (the failure is swallowed per-field).
+
+        The very next call, ``ContainerStationClient.get_containers()``,
+        then either has no valid session to attach as a Bearer token or
+        gets one rejected by Container Station's v3 API with::
+
+            {"code": 1002, "message": "unauthorized: you should add
+             'Authorization: Bearer xxx' in header"}
+
+        ``ContainerStationClient`` raises :class:`QnapAuthError` in both
+        cases, so a single fresh ``self._api.login()`` plus one retry is
+        enough to recover without needing any change to the qnap-client
+        library itself.
+        """
+        try:
+            return await self._cs.get_containers()
+        except QnapAuthError:
+            _LOGGER.debug(
+                "Container Station rejected the current QTS session; "
+                "re-authenticating and retrying once"
+            )
+            await self._api.login()
+            return await self._cs.get_containers()
