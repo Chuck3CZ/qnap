@@ -1,4 +1,4 @@
-# QNAP NAS Integration for Home Assistant  /// with fixed connection to TVs473 / tested
+# QNAP NAS Integration for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![GitHub release](https://img.shields.io/github/release/disforw/qnap.svg)](https://github.com/disforw/qnap/releases)

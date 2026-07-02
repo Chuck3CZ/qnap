@@ -129,18 +129,21 @@ _DRIVE_MON_COND: tuple[SensorEntityDescription, ...] = (
         key="drive_smart_status",
         translation_key="drive_smart_status",
         icon="mdi:checkbox-marked-circle-outline",
-        entity_registry_enabled_default=False,
     ),
     SensorEntityDescription(
         key="drive_temp",
         translation_key="drive_temp",
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
-        entity_registry_enabled_default=False,
         state_class=SensorStateClass.MEASUREMENT,
     ),
 )
 _VOLUME_MON_COND: tuple[SensorEntityDescription, ...] = (
+    SensorEntityDescription(
+        key="volume_status",
+        translation_key="volume_status",
+        icon="mdi:checkbox-marked-circle-outline",
+    ),
     SensorEntityDescription(
         key="volume_size_used",
         translation_key="volume_size_used",
@@ -408,7 +411,7 @@ class QNAPVolumeSensor(QNAPSensor):
         return {"monitor_device": str(self.monitor_device)}
 
     @property
-    def native_value(self) -> float | None:
+    def native_value(self) -> float | str | None:
         """Return the state of the sensor."""
         vol = next(
             (v for v in self.coordinator.data.volumes if v.name == self.monitor_device),
@@ -417,6 +420,8 @@ class QNAPVolumeSensor(QNAPSensor):
         if vol is None:
             return None
 
+        if self.entity_description.key == "volume_status":
+            return vol.status
         if self.entity_description.key == "volume_size_free":
             return round_nicely(vol.free_bytes / 1024 / 1024 / 1024)
         if self.entity_description.key == "volume_size_used":

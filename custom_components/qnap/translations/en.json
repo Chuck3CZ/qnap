@@ -84,6 +84,9 @@
       "volume_percentage_used": {
         "name": "Volume used ({monitor_device})"
       },
+      "volume_status": {
+        "name": "Volume status ({monitor_device})"
+      },
       "volume_size_free": {
         "name": "Free space ({monitor_device})"
       },
