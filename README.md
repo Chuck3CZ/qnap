@@ -22,7 +22,7 @@ Monitor your QNAP NAS directly from Home Assistant. Track CPU, memory, network, 
 
 1. Open HACS in Home Assistant
 2. Click the three-dot menu (⋮) in the top right → **Custom repositories**
-3. Add `https://github.com/disforw/qnap` with category **Integration**
+3. Add `https://github.com/chuck3cz/qnap` with category **Integration**
 4. Search for **QNAP** and install it
 5. Restart Home Assistant
 6. Go to **Settings → Devices & Services → Add Integration** and search for **QNAP**
