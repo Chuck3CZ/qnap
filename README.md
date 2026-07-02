@@ -10,7 +10,7 @@ After spending considerable time trying to get improvements accepted into Home A
 
 What it means for you is that **this integration moves faster**. Bug fixes ship when they're ready. New features — Container Station support, firmware update entities, and whatever comes next — don't have to survive a gauntlet of architectural review before reaching your Home Assistant instance.
 
-v3.0 is a full rewrite. Config flow only, modern architecture throughout, and several features that were on the wishlist for years. If you've been using the built-in core integration, you can migrate to this one — it uses the same configuration structure.
+v3.2.3 is a full re-rewrite. Config flow only, modern architecture throughout, and several features that were on the wishlist for years. If you've been using the built-in core integration, you can migrate to this one — it uses the same configuration structure.
 
 ## ✨ What It Does
 
@@ -29,7 +29,7 @@ Monitor your QNAP NAS directly from Home Assistant. Track CPU, memory, network, 
 
 ### Manual
 
-1. Download the latest release from [GitHub Releases](https://github.com/disforw/qnap/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/chuck3cz/qnap/releases)
 2. Copy the `custom_components/qnap` folder into your HA `config/custom_components/` directory
 3. Restart Home Assistant
 4. Go to **Settings → Devices & Services → Add Integration** and search for **QNAP**
