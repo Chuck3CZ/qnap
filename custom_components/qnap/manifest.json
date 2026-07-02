@@ -2,13 +2,14 @@
   "domain": "qnap",
   "name": "QNAP",
   "codeowners": [
-    "@disforw"
+    "@disforw",
+    "@chuck3cz",
   ],
   "config_flow": true,
-  "documentation": "https://github.com/disforw/qnap",
+  "documentation": "https://github.com/Chuck3CZ/qnap",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/disforw/qnap/issues",
+  "issue_tracker": "https://github.com/Chuck3CZ/qnap",
   "loggers": [
     "qnap_client"
   ],
