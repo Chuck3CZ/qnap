@@ -2,7 +2,8 @@
   "domain": "qnap",
   "name": "QNAP",
   "codeowners": [
-    "@disforw"
+    "@disforw",
+    "@chuck3cz"
   ],
   "config_flow": true,
   "documentation": "https://github.com/disforw/qnap",
